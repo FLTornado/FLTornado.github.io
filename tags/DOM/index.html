@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: 前端, Blog">
-    <meta name="description" content="分类: 前端 | 击穿">
+    <meta name="keywords" content="标签: DOM, Blog">
+    <meta name="description" content="标签: DOM | 击穿">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>分类: 前端 | 击穿</title>
+    <title>标签: DOM | 击穿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -248,24 +248,58 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
     
 
-<div id="category-cloud" class="container chip-container">
+<div id="tags" class="container chip-container">
     <div class="card">
         <div class="card-content">
             <div class="tag-title center-align">
-                <i class="fa fa-bookmark"></i>&nbsp;&nbsp;文章分类
+                <i class="fa fa-tags"></i>&nbsp;&nbsp;文章标签
             </div>
             <div class="tag-chips">
                 
                 
-                
-                <a href="/categories/%E5%89%8D%E7%AB%AF/" title="前端: 3">
+                <a href="/tags/css/" title="css: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F9EBEA;">前端
+                             chip-default "
+                            data-tagname="css" style="background-color: #F9EBEA;">css
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="前端" style="background-color: #F5EEF8;">前端
                         <span class="tag-length">3</span>
                     </span>
                 </a>
                 
+                
+                <a href="/tags/html/" title="html: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="html" style="background-color: #D5F5E3;">html
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/DOM/" title="DOM: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            data-tagname="DOM" style="background-color: #E8F8F5;">DOM
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Javascript/" title="Javascript: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Javascript" style="background-color: #FEF9E7;">Javascript
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
                 
             </div>
         </div>
@@ -277,7 +311,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     <article id="articles" class="container articles">
         <div class="row tags-posts">
             
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="前端, DOM, Javascript" data-aos="fade-up">
                 <div class="card">
                     <a href="/2019/12/06/javascript-dom-de-zhi-shi-cun-chu/">
                         <div class="card-image tag-image">
@@ -288,14 +323,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                     </a>
                     <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-DOM（Document Object Model）的缩写，即文档对象模型。是针对XML并经过扩展用于HTML的应用程序编程接口（API）
-所以DOM本质上是一种接口（API)，是专门操作网页内容的API标准
-DOM把整个页面映射为一个多
-                            
-                        </div>
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-06
@@ -305,139 +332,13 @@ DOM把整个页面映射为一个多
                                 <i class="fa fa-bookmark fa-fw icon-category"></i>
                                 
                                 <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category" target="_blank">
-                                    前端
+                                前端
                                 </a>
                                 
                                 
                             </span>
                         </div>
                     </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/" target="_blank">
-                            <span class="chip bg-color">前端</span>
-                        </a>
-                        
-                        <a href="/tags/DOM/" target="_blank">
-                            <span class="chip bg-color">DOM</span>
-                        </a>
-                        
-                        <a href="/tags/Javascript/" target="_blank">
-                            <span class="chip bg-color">Javascript</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/12/05/css-de-zhi-shi-chu-bei/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="img/css.jpg" class="responsive-img" alt="CSS">
-                            
-                            <span class="card-title">CSS</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                CSS - Cascading style sheet父元素的某些css属性会被子元素继承。
-在css中定义尺寸通常使用px(pixels)作为单位,也可以用%,vh,vw等。
-子元素的style能覆盖父元素的style。
-对于block 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-05
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category" target="_blank">
-                                    前端
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/css/" target="_blank">
-                            <span class="chip bg-color">css</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/" target="_blank">
-                            <span class="chip bg-color">前端</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2019/11/16/html-de-zhi-shi-chu-bei/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="img/html.jpg" class="responsive-img" alt="HTML">
-                            
-                            <span class="card-title">HTML</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                HTML:1.结构：​    
-&lt;!DOCTYPE html>        声明文档类型 - document type
-&lt;html>
-&lt;head>
-    主要用于声明
-&lt;/head>
-&lt;body>
-   
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category" target="_blank">
-                                    前端
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/" target="_blank">
-                            <span class="chip bg-color">前端</span>
-                        </a>
-                        
-                        <a href="/tags/html/" target="_blank">
-                            <span class="chip bg-color">html</span>
-                        </a>
-                        
-                    </div>
-                    
                 </div>
             </div>
             
