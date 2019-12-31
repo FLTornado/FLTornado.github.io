@@ -228,7 +228,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('img/')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('img/js.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -437,6 +437,7 @@
 <li>按照页面中出现的顺序，在其他同步脚本执行后，<code>DOMContentLoaded</code> 事件前 依次执行 d.js, e.js</li>
 </ul>
 <p>文档解析时，遇到设置了<code>defer</code>的脚本，就会在后台进行下载，但是并不会阻止文档的渲染，当页面解析&amp;渲染完毕后。<br>会等到所有的<code>defer</code>脚本加载完毕并按照顺序执行，执行完毕后会触发<code>DOMContentLoaded</code>事件。</p>
+<p>按下图所示，对应的html中script2加载代码应该比script1的靠前。</p>
 <p><img src="https://wx1.sinaimg.cn/mw690/006AeIDuly1g9w8y4hze6j310o07umxi.jpg" alt="[https://wx1.sinaimg.cn/mw690/006AeIDuly1g9w8y4hze6j310o07umxi.jpg](https://wx1.sinaimg.cn/mw690/006AeIDuly1g9w8y4hze6j310o07umxi.jpg)"></p>
 <h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>b.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>c.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
@@ -706,9 +707,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String</a></p>
 <h2 id="ECMAScript与JavaScript的关系"><a href="#ECMAScript与JavaScript的关系" class="headerlink" title="ECMAScript与JavaScript的关系"></a>ECMAScript与JavaScript的关系</h2><p>彻底搞清ECMAScript与JavaScirpt 的关系<br>ECMAScript 是JavaScript的规范，JavaScript是ECMAScript的一种实现，在日常场合，这两个词是可以互换的。JavaSript的创造者Netscape公司，将JavaSript提交给国际标准化组织ECMA，希望这种语言能够成为国际标准，后来ECMA发布标准文件的第一版（ECMA-262)，规定了浏览器脚本语言的标准，并将这种语言成为ECMAScript。该标准从一开始就是针对JavaScirpt语言制定的，之所以不叫JavaScript，有两个原因：一是商标，Java是Sun公司的商标，根据授权协议，只有Netscape公司可以合法地使用JavaScirpt这个名字，且JavaScript本身也已经被Netscape公司注册为商标；二是想体现这门语言的制定者是ECMA，不是Netscape，有利于保证这门语言的开放性和中立性。但事实上，JavaScript比ECMA-262含义多得多，一个完整的JavaScript实现应该有以下三部分组成：<br>ECMAScirpt：核心<br>DOM：文档对象模型<br>BOM:浏览器对象模型</p>
 <p>ECMAScript是JS的核心部分，是一种脚本在语法和语义上的标准，充当翻译的角色。 ECMAScript又包含哪些部分呢？</p>
-<p><img src="https://img-blog.csdnimg.cn/20190418103803518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70" alt="[https://img-blog.csdnimg.cn/20190418103803518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/20190418103803518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70)"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190418103803518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><a href="https://img-blog.csdnimg.cn/20190418103803518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20190418103803518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70</a></p>
 <p>数据类型</p>
-<p><img src="https://img-blog.csdnimg.cn/20190418150517758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70" alt="[https://img-blog.csdnimg.cn/20190418150517758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/20190418150517758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70)"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190418150517758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><a href="https://img-blog.csdnimg.cn/20190418150517758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20190418150517758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGVyYXJ5Z2lybA==,size_16,color_FFFFFF,t_70</a></p>
 <p>原文链接：<a href="https://blog.csdn.net/literarygirl/article/details/89373390" target="_blank" rel="noopener">https://blog.csdn.net/literarygirl/article/details/89373390</a></p>
 <h2 id="Math-amp-Numbers"><a href="#Math-amp-Numbers" class="headerlink" title="Math &amp; Numbers"></a>Math &amp; Numbers</h2><h3 id="例子-3"><a href="#例子-3" class="headerlink" title="例子"></a>例子</h3><pre class=" language-js"><code class="language-js">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token string">'&lt;br/>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">**</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token string">'&lt;br/>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//2的3次方</span>
@@ -1137,7 +1140,6 @@ var s2 = s1.substring(2);
 s1 = null;</code></pre><p>我在很多地方都看到过说装箱操作会泄露内存，可是这里明明是销毁了实例的，哎，我还是相信《javascript高级程序设计》吧，认为它不会泄露，如果你有见解，请留言！</p>
 <p>2，拆箱：</p>
 <p>将引用类型对象转换为对应的值类型对象，它是通过引用类型的valueOf()或者toString()方法来实现的。如果是自定义的对象，你也可以自定义它的valueOf()/tostring()方法，实现对这个对象的拆箱。</p>
-<p><a href="javascript:void(0);"><img src="https://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a></p>
 <pre><code> 1 var objNum = new Number(123);  
  2 var objStr =new String(&quot;123&quot;);  
  3 
@@ -1357,7 +1359,7 @@ s1 = null;</code></pre><p>我在很多地方都看到过说装箱操作会泄露
                 <a href="/2019/12/14/javascript-de-zhi-shi-chu-bei/">
                     <div class="card-image">
                         
-                        <img src="img/" class="responsive-img" alt="JavaScript">
+                        <img src="img/js.png" class="responsive-img" alt="JavaScript">
                         
                         <span class="card-title">JavaScript</span>
                     </div>
