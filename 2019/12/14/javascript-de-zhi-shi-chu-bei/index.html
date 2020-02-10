@@ -2080,15 +2080,16 @@ x <span class="token operator">=</span><span class="token operator">></span> <sp
 
 <span class="token keyword">var</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>在ECMAScript 3/5中，通过将<code>this</code>值分配给封闭的变量，可以解决<code>this</code>问题。</p>
-<pre><code>function Person() {
-  var that = this;
-  that.age = 0;
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  that<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-  setInterval(function growUp() {
-    //  回调引用的是`that`变量, 其值是预期的对象. 
-    that.age++;
-  }, 1000);
-}</code></pre><p>或者，可以创建<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">绑定函数</a>，以便将预先分配的<code>this</code>值传递到绑定的目标函数（上述示例中的<code>growUp()</code>函数）。</p>
+  <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">growUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//  回调引用的是`that`变量, 其值是预期的对象. </span>
+    that<span class="token punctuation">.</span>age<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>或者，可以创建<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">绑定函数</a>，以便将预先分配的<code>this</code>值传递到绑定的目标函数（上述示例中的<code>growUp()</code>函数）。</p>
 <p>箭头函数不会创建自己的<code>this,它只会从自己的作用域链的上一层继承this</code>。因此，在下面的代码中，传递给<code>setInterval</code>的函数内的<code>this</code>与封闭函数中的<code>this</code>值相同：</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
   <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -2728,6 +2729,145 @@ obj<span class="token punctuation">.</span>__proto__<span class="token punctuati
 <span class="token comment" spellcheck="true">// prot "456"（访问到了原型链）</span></code></pre>
 <p>摘自:</p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener">https://developer.mozilla.org/zhCN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment</a></p>
+<h2 id="JS跨域"><a href="#JS跨域" class="headerlink" title="JS跨域"></a>JS跨域</h2><h3 id="一、何为跨域？"><a href="#一、何为跨域？" class="headerlink" title="一、何为跨域？"></a>一、何为跨域？</h3><p>只要协议、域名、端口号任何一个不同，就是跨域。</p>
+<p>举个例子：</p>
+<table>
+<thead>
+<tr>
+<th><a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a></th>
+<th>协议不同</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a></td>
+<td>域名不同</td>
+</tr>
+<tr>
+<td><a href="http://www.test.com" target="_blank" rel="noopener">http://www.test.com</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a></td>
+<td>端口不同</td>
+</tr>
+<tr>
+<td><a href="http://www.example.com:81" target="_blank" rel="noopener">http://www.example.com:81</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<p> 注意：ip相同，域名不同，也是跨域。（在本地写demo时，配置host文件，127.0.0.1配置了两个域名，纠结是否算跨域，试了一下，是的）</p>
+<h3 id="二、跨域的类型"><a href="#二、跨域的类型" class="headerlink" title="二、跨域的类型"></a>二、跨域的类型</h3><p>1.cookie</p>
+<p>只有同源的网页才能共享cookie</p>
+<p>2.iframe</p>
+<p>网格网页不同源，无法拿到对方的DOM</p>
+<p>3.ajax</p>
+<p>只能请求同源的网址，否则报错</p>
+<h3 id="三、解决跨域"><a href="#三、解决跨域" class="headerlink" title="三、解决跨域"></a>三、解决跨域</h3><p>我在我电脑的host文件里配置了两个域名模拟跨域。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1074144/201709/1074144-20170920144744728-1773417312.png" alt="img"></p>
+<p>以下，test1代表<a href="http://www.test1.myhost.com" target="_blank" rel="noopener">www.test1.myhost.com</a>; test2代表<a href="http://www.test2.myhost.com" target="_blank" rel="noopener">www.test2.myhost.com</a></p>
+<p>1.cookie</p>
+<p>存在这样一种情况能够实现共享cookie：两个网页一级域名形同，二级域名不同，设置cookie时，指定两个网页的domain相同，便可以共享cookie啦。</p>
+<p>test1：</p>
+<pre class=" language-js"><code class="language-js">document<span class="token punctuation">.</span>cookie <span class="token operator">=</span> <span class="token string">'key1= value1; domain=myhost.com'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>cookie<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//"key1 = value1"</span></code></pre>
+<p>test2:</p>
+<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>cookie<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//"key1 = value1"</span></code></pre>
+<p>就酱紫，他俩共享cookie了，好可怕</p>
+<p>打开application看看，发现这cookie原来在myhost.com域名下。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1074144/201709/1074144-20170920145945228-2114482877.png" alt="img"></p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener"><code>Promise</code></a> 是一个对象，它代表了一个异步操作的最终完成或者失败。因为大多数人仅仅是使用已创建的 Promise 实例对象，所以本教程将首先说明怎样使用 Promise，再说明如何创建 Promise。</p>
+<p>本质上，Promise 是一个被某些函数传出的对象，我们附加回调函数（callback）使用它，而不是将回调函数传入那些函数内部。</p>
+<p>假设现在有一个名为 <code>createAudioFileAsync()</code> 的函数，如果给出一些配置和两个回调函数，这个函数能异步地生成音频文件。一个回调函数是文件成功创建时的回调，另一个则是出现异常时的回调。</p>
+<p>以下为使用 <code>createAudioFileAsync()</code> 的示例：</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 成功的回调函数</span>
+<span class="token keyword">function</span> <span class="token function">successCallback</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"音频文件创建成功: "</span> <span class="token operator">+</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 失败的回调函数</span>
+<span class="token keyword">function</span> <span class="token function">failureCallback</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"音频文件创建失败: "</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">createAudioFileAsync</span><span class="token punctuation">(</span>audioSettings<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span></code></pre>
+<p>最新的方式就是返回一个 promise 对象，使得你可以将你的回调函数绑定在该 Promise 上：</p>
+<p>如果函数 <code>createAudioFileAsync()</code> 被重写为返回 Promise 对象的形式，就可以像这样简单地使用：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> promise <span class="token operator">=</span> <span class="token function">createAudioFileAsync</span><span class="token punctuation">(</span>audioSettings<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>可简写为：</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">createAudioFileAsync</span><span class="token punctuation">(</span>audioSettings<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>我们把这个称为异步函数调用，这种形式有若干优点。下面我们将会逐一讨论这些优点。</p>
+<h3 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h3><p>不同于“老式”的传入回调，在使用 Promise 时，会有以下约定：</p>
+<ul>
+<li>在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop#执行至完成" target="_blank" rel="noopener">本轮 Javascript event loop（事件循环）运行完成</a> 之前，回调函数是不会被调用的。</li>
+<li>通过 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" target="_blank" rel="noopener"><code>then()</code> </a>添加的回调函数总会被调用，即便它是在异步操作完成之后才被添加的函数。</li>
+<li>通过多次调用 <code>then()</code>，可以添加多个回调函数，它们会按照插入顺序一个接一个独立执行。</li>
+</ul>
+<p>因此，Promise 最直接的好处就是<strong>链式调用</strong>（<strong>chaining</strong>）。</p>
+<h3 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h3><p>连续执行两个或者多个异步操作是一个常见的需求，在上一个操作执行成功之后，开始下一个的操作，并带着上一步操作所返回的结果。我们可以通过创造一个 <strong>Promise 链</strong>来实现这种需求。</p>
+<p>见证奇迹的时刻：<code>then()</code> 函数会返回一个<strong>全新的 Promise</strong>，和原来的不同：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> promise <span class="token operator">=</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> promise2 <span class="token operator">=</span> promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>或者</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> promise2 <span class="token operator">=</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>第二个对象（<code>promise2</code>）不仅表示 <code>doSomething()</code> 函数的完成，也代表了你传入的 <code>successCallback</code> 或者 <code>failureCallback</code> 的完成，<code>successCallback</code> 或 <code>failureCallback</code> 有可能返回一个 Promise 对象，从而形成另一个异步操作。这样的话，任何一个 <code>promise2</code> 新增的回调函数，都会被依次排在由上一个<code>successCallback</code> 或 <code>failureCallback</code> 执行后所返回的 Promise 对象的后面。</p>
+<p>基本上，每一个 Promise 都代表了链中另一个异步过程的完成。</p>
+<p>在过去，要想做多重的异步操作，会导致经典的回调地狱：</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">doSomethingElse</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">doThirdThing</span><span class="token punctuation">(</span>newResult<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>finalResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Got the final result: '</span> <span class="token operator">+</span> finalResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>通过新的功能方法，我们把回调绑定到被返回的 Promise 上代替以往的做法，形成一个 Promise 链：</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">doSomethingElse</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>newResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">doThirdThing</span><span class="token punctuation">(</span>newResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>finalResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Got the final result: '</span> <span class="token operator">+</span> finalResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>then里的参数是可选的，<code>catch(failureCallback)</code> 是 <code>then(null, failureCallback)</code> 的缩略形式。如下所示，我们也可以用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">箭头函数</a>来表示：</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>result <span class="token operator">=</span><span class="token operator">></span> <span class="token function">doSomethingElse</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>newResult <span class="token operator">=</span><span class="token operator">></span> <span class="token function">doThirdThing</span><span class="token punctuation">(</span>newResult<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>finalResult <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Got the final result: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>finalResult<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><strong>注意：</strong>一定要有返回值，否则，callback 将无法获取上一个 Promise 的结果。(如果使用箭头函数，<code>() =&gt; x</code> 比 <code>() =&gt; { return x; }</code> 更简洁一些，但后一种保留 <code>return</code> 的写法才支持使用多个语句。）。</p>
+<h4 id="Catch-的后续链式操作"><a href="#Catch-的后续链式操作" class="headerlink" title="Catch 的后续链式操作"></a>Catch 的后续链式操作</h4><p>有可能会在一个回调失败之后继续使用链式操作，即 使用一个 <code>catch</code>，这对于在链式操作中抛出一个失败之后，再次进行新的操作很有用。请阅读下面的例子：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'初始化'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'有哪里不对了'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行「这个」”'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行「那个」'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行「这个」，无论前面发生了什么'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>输出结果如下：</p>
+<pre class=" language-html"><code class="language-html">初始化
+执行“那个”
+执行“这个”，无论前面发生了什么</code></pre>
+<p><strong>注意：</strong>因为抛出了错误 有哪里不对了，所以前一个 执行「这个」 没有被输出。</p>
+<p>更多关于Promise的资料访问:</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises</a></p>
 <h2 id="参考视频"><a href="#参考视频" class="headerlink" title="参考视频:"></a>参考视频:</h2><iframe width="560" height="315" src="https://www.youtube.com/embed/TLlGhogq56Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/c-I5S_zTwAc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ## 可供参考的网站:
